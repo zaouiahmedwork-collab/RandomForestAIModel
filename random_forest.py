@@ -1,3 +1,6 @@
+"""Implimenting Random Forest AI Model For Titanic Incident : Predicting if a person wil
+live or not"""
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -7,8 +10,8 @@ from sklearn.metrics import classification_report, accuracy_score
 # -------------------------
 # Load the Titanic dataset
 # -------------------------
-url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
-df = pd.read_csv(url)
+URL = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+df = pd.read_csv(URL)
 
 # -------------------------
 # SAVE the dataset locally
@@ -43,22 +46,22 @@ for col in cat_cols:
 X = df.drop('Survived', axis=1)
 y = df['Survived']
 
-X_train, X_test, y_train, y_test = train_test_split(
+X_TRAIN, X_TEST, Y_TRAIN, Y_TEST = train_test_split(
     X, y, test_size=0.2, random_state=42)
 
 # -------------------------
 # Train Random Forest
 # -------------------------
 model = RandomForestClassifier(n_estimators=200, random_state=42)
-model.fit(X_train, y_train)
+model.fit(X_TRAIN, Y_TRAIN)
 
 # -------------------------
 # Evaluate
 # -------------------------
-pred = model.predict(X_test)
+pred = model.predict(X_TEST)
 
-print("\nAccuracy:", accuracy_score(y_test, pred))
-print("\nClassification Report:\n", classification_report(y_test, pred))
+print("\nAccuracy:", accuracy_score(Y_TEST, pred))
+print("\nClassification Report:\n", classification_report(Y_TEST, pred))
 
 # -------------------------
 # Feature Importance
